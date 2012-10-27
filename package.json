@@ -1,0 +1,33 @@
+{
+  "name"            : "geddy-spa",
+  "description"     : "Single Page Application helper for the Geddy Web Framework",
+  "version"         : "0.0.1",
+  "author"          : "Joseph Werle <joseph.werle@gmail.com> (http://werle.io)",
+  "repository"      : {
+    "type"  : "git",
+    "url"   : "git://github.com/jwerle/geddy-spa.git"
+  },
+  "keywords"        : [
+    "gpm",
+    "geddy package",
+    "geddy package manager",
+    "package"
+  ],
+  "bin"             : {
+    "gpm"  : "./bin/cli.js"
+  },
+  "main"            : "./lib/gpm/gpm.js",
+  "preferGlobal"    : true,
+  "dependencies"    : {
+    "geddy"     : "0.5.5",
+    "utilities" : "0.0.x",
+    "colors"    : "0.6.0-1",
+    "log"       : "1.3.0",
+    "request"   : "2.11.5",
+    "js-yml"    : "1.0.2"
+  },
+  "devDependencies" : {},
+  "engines"         : {
+    "node": "*"
+  }
+}
