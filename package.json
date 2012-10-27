@@ -10,6 +10,7 @@
   "main"            : "./index.js",
   "dependencies"    : {
     "utilities" : "0.0.x",
+    "bower"     : "0.3.x"
   },
   "devDependencies" : {},
   "engines"         : {
