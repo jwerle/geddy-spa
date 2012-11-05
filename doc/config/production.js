@@ -1,6 +1,6 @@
 /*
- * Geddy-SPA (Single Page Application)
- * Copyright 2012 Joseph Werle (joseph.werle@gmail.com)
+ * Geddy JavaScript Web development framework
+ * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,30 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+*/
+
+var config = {
+  detailedErrors: false
+, hostname: null
+, port: 4000
+/* TODO: Define a defaultAdapter. You can use postgresdb, memory, mongo or riak. 
+, model: {
+    defaultAdapter: 'mongo'
+	}
+, db: {
+    mongo: {
+      dbname: 'local'
+    }
+  }
  */
+, sessions: {
+    store: 'cookie'
+  , key: 'sid'
+  , expiry: 14 * 24 * 60 * 60
+  }
+};
 
-/*
- @name Geddy-SPA
- @module geddy-spa
- @requires ./lib/spa.js
-*/
+module.exports = config;
 
-/*
-  @exports SinglePageApplication
-*/
-module.exports = require('./lib/spa.js');
+

@@ -1,6 +1,6 @@
 /*
- * Geddy-SPA (Single Page Application)
- * Copyright 2012 Joseph Werle (joseph.werle@gmail.com)
+ * Geddy JavaScript Web development framework
+ * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-/*
- @name Geddy-SPA
- @module geddy-spa
- @requires ./lib/spa.js
+ *
 */
 
-/*
-  @exports SinglePageApplication
-*/
-module.exports = require('./lib/spa.js');
+var Main = function () {
+  this.index = function (req, resp, params) {
+    this.respond(params, {
+      format: 'html'
+    , template: 'app/views/main/index'
+    });
+  };
+};
+
+exports.Main = Main;
+
+

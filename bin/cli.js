@@ -14,14 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/*
- @name Geddy-SPA
- @module geddy-spa
- @requires ./lib/spa.js
+/**
+  @name root
+  @namespace root
 */
+var root = {};
 
-/*
-  @exports SinglePageApplication
-*/
-module.exports = require('./lib/spa.js');

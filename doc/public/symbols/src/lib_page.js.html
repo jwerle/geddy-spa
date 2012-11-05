@@ -1,0 +1,126 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*
+<span class='line'>  2</span>  * Geddy-SPA (Single Page Application)
+<span class='line'>  3</span>  * Copyright 2012 Joseph Werle (joseph.werle@gmail.com)
+<span class='line'>  4</span>  *
+<span class='line'>  5</span>  * Licensed under the Apache License, Version 2.0 (the "License");
+<span class='line'>  6</span>  * you may not use this file except in compliance with the License.
+<span class='line'>  7</span>  * You may obtain a copy of the License at
+<span class='line'>  8</span>  *
+<span class='line'>  9</span>  *         http://www.apache.org/licenses/LICENSE-2.0
+<span class='line'> 10</span>  *
+<span class='line'> 11</span>  * Unless required by applicable law or agreed to in writing, software
+<span class='line'> 12</span>  * distributed under the License is distributed on an "AS IS" BASIS,
+<span class='line'> 13</span>  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class='line'> 14</span>  * See the License for the specific language governing permissions and
+<span class='line'> 15</span>  * limitations under the License.
+<span class='line'> 16</span>  */</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">base</span><span class="WHIT">          </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">require</span><span class="PUNC">(</span><span class="STRN">'./base.js'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">Site</span><span class="WHIT">          </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">require</span><span class="PUNC">(</span><span class="STRN">'./site.js'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="COMM">/**
+<span class='line'> 20</span>   @name Page
+<span class='line'> 21</span>   @constructor
+<span class='line'> 22</span>   @description Constructs a new instance of Page
+<span class='line'> 23</span>   @param {String} name The name of the page
+<span class='line'> 24</span>   @param {Object} options Options for the page construction
+<span class='line'> 25</span> */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="NAME">Page</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">container</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 30</span>     @name Page#name
+<span class='line'> 31</span>     @public
+<span class='line'> 32</span>     @type String
+<span class='line'> 33</span>     @description The page name
+<span class='line'> 34</span>   */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 38</span>     @name Page#routes
+<span class='line'> 39</span>     @public
+<span class='line'> 40</span>     @type String
+<span class='line'> 41</span>     @description The page routes to be captured
+<span class='line'> 42</span>   */</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="NAME">this.routes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.routes</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> 
+<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 46</span>     @name Page#view
+<span class='line'> 47</span>     @public
+<span class='line'> 48</span>     @type String
+<span class='line'> 49</span>     @description The page view
+<span class='line'> 50</span>   */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">this.view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.view</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> 
+<span class='line'> 53</span> </span><span class="WHIT">   </span><span class="COMM">/*
+<span class='line'> 54</span>     @name Page#layout
+<span class='line'> 55</span>     @public
+<span class='line'> 56</span>     @type String
+<span class='line'> 57</span>     @description The page layout
+<span class='line'> 58</span>   */</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">this.layout</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.layout</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> 
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 62</span>     @name Page#template
+<span class='line'> 63</span>     @public
+<span class='line'> 64</span>     @type String
+<span class='line'> 65</span>     @description The page template
+<span class='line'> 66</span>   */</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">this.template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.template</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 70</span>     @name Page#partial
+<span class='line'> 71</span>     @public
+<span class='line'> 72</span>     @type String
+<span class='line'> 73</span>     @description The page partial
+<span class='line'> 74</span>   */</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="NAME">this.partial</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> 
+<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 78</span>     @name Page#bound
+<span class='line'> 79</span>     @public
+<span class='line'> 80</span>     @type String
+<span class='line'> 81</span>     @description The page bound state
+<span class='line'> 82</span>   */</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="NAME">this.bound</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> 
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 86</span>     @name Page#data
+<span class='line'> 87</span>     @public
+<span class='line'> 88</span>     @type String
+<span class='line'> 89</span>     @description The page data
+<span class='line'> 90</span>   */</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">  </span><span class="NAME">this.data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options.data</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 92</span> 
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'> 94</span>     @name Page#owner
+<span class='line'> 95</span>     @public
+<span class='line'> 96</span>     @type String
+<span class='line'> 97</span>     @description The page container
+<span class='line'> 98</span>   */</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">  </span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">container</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>102</span> 
+<span class='line'>103</span> </span><span class="COMM">/*
+<span class='line'>104</span>   @scope Page.prototype
+<span class='line'>105</span> */</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="NAME">Page.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Page.fn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'>108</span>     @name Page.Page#fetch
+<span class='line'>109</span>     @public
+<span class='line'>110</span>     @function
+<span class='line'>111</span>     @description Returns the instance of the page by name and the rendered partial attached
+<span class='line'>112</span>     @return The page instance
+<span class='line'>113</span>   */</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">  </span><span class="NAME">this.fetch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.container.fetch</span><span class="PUNC">(</span><span class="NAME">this.name</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> 
+<span class='line'>119</span> </span><span class="NAME">exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Page</span><span class="PUNC">;</span></pre></body></html>

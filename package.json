@@ -8,9 +8,15 @@
     "url"   : "git://github.com/jwerle/geddy-spa.git"
   },
   "main"            : "./index.js",
+  "bin": {
+    "geddy-spa": "./bin/cli.js"
+  }
   "dependencies"    : {
-    "utilities" : "0.0.x",
-    "bower"     : "0.3.x"
+    "geddy"           : "0.5.x",
+    "utilities"       : "0.0.x",
+    "jsdoc"           : "3.x.x",
+    "JSONSelect"      : "0.4.x",
+    "lodash"          : "0.9.x"
   },
   "devDependencies" : {},
   "engines"         : {
